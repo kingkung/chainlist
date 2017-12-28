@@ -37,7 +37,9 @@ App = {
   },
 
   initContract: function() {
+    console.log("init contract");
     $.getJSON('ChainList.json', function(chainListArtifact) {
+      console.log("create contract");
       // Get the necessary contract artifact file and use it to instantiate a truffle contract abstraction.
       App.contracts.ChainList = TruffleContract(chainListArtifact);
 
@@ -149,6 +151,7 @@ App = {
 
   // Listen for events raised from the contract
   listenToEvents: function() {
+    console.log("listen to events");
     App.contracts.ChainList.deployed().then(function(instance) {
       instance.sellArticleEvent({}, {
         fromBlock: 0,
@@ -159,6 +162,7 @@ App = {
         } else {
           console.error(error);
         }
+        console.log("sellArticleEvent reload articles");
         App.reloadArticles();
       });
 
@@ -171,6 +175,7 @@ App = {
         } else {
           console.error(error);
         }
+        console.log("buyArticleEvent reload articles");
         App.reloadArticles();
       });
     });
