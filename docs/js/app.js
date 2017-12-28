@@ -53,6 +53,7 @@ App = {
   },
 
   reloadArticles: function() {
+    console.log("reload Articles");
     // avoid reentry
     if (App.loading) {
       return;
@@ -75,6 +76,7 @@ App = {
       for (var i = 0; i < articleIds.length; i++) {
         var articleId = articleIds[i];
         chainListInstance.articles(articleId.toNumber()).then(function(article) {
+          console.log("displaying article " + i + ", id: " + article[0]);
           App.displayArticle(
             article[0],
             article[1],
@@ -92,6 +94,7 @@ App = {
   },
 
   displayArticle: function(id, seller, name, description, price) {
+    console.log("Displaying article " + id + ", name: " + name);
     // Retrieve the article placeholder
     var articlesRow = $('#articlesRow');
 
