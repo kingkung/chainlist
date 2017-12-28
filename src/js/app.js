@@ -66,14 +66,17 @@ App = {
     var chainListInstance;
 
     App.contracts.ChainList.deployed().then(function(instance) {
+      console.log("getting articles for sale");
       chainListInstance = instance;
       return chainListInstance.getArticlesForSale();
     }).then(function(articleIds) {
+      console.log("show articles");
       // Retrieve and clear the article placeholder
       var articlesRow = $('#articlesRow');
       articlesRow.empty();
 
       for (var i = 0; i < articleIds.length; i++) {
+        console.log("article " + i);
         var articleId = articleIds[i];
         chainListInstance.articles(articleId.toNumber()).then(function(article) {
           console.log("displaying article " + i + ", id: " + article[0]);
